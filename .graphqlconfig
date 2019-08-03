@@ -1,0 +1,20 @@
+{
+  "excludes": [
+    "node_modules/**"
+  ],
+  "includes": [
+    "./**/*.js",
+    "./**/*.ts",
+    "./**/*.tsx"
+  ],
+  "projects": {
+    "gatsby-dev": {
+      "schemaPath": "./schema.graphql",
+      "extensions": {
+        "endpoints": {
+          "dev": "http://localhost:8000/___graphql"
+        }
+      }
+    }
+  }
+}

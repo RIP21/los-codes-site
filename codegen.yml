@@ -1,0 +1,22 @@
+overwrite: true
+schema: "${SCHEMA:schema.graphql}"
+documents:
+  - "./{src,gatsby-scripts}/**/*.graphql"
+  - "./{src,gatsby-scripts}/**/*!(.generated).{ts,tsx}"
+generates:
+  src/types.generated.ts:
+    plugins:
+      - "typescript"
+    config:
+      namingConvention:
+        enumValues: keep
+  src/:
+    preset: near-operation-file
+    presetConfig:
+      extension: .generated.ts
+      baseTypesPath: ./types.generated.ts
+    plugins:
+      - typescript-operations
+  ./schema.graphql:
+    plugins:
+      - "schema-ast"

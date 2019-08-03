@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "downlevelIteration": true,
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "module": "esnext",
+    "target": "esnext",
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": false,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "incremental": true
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "jest",
+    "coverage"
+  ],
+  "include": ["./gatsby-config.js","src", "./**.ts", "./**.js", "./typings"]
+}

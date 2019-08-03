@@ -1,0 +1,14 @@
+query createPages_MarkdownRemark {
+  allMarkdownRemark(
+    sort: { order: DESC, fields: [frontmatter___date] }
+    limit: 1000
+  ) {
+    edges {
+      node {
+        frontmatter {
+          path
+        }
+      }
+    }
+  }
+}
