@@ -52,8 +52,7 @@ const config = {
     {
       resolve: 'gatsby-plugin-netlify-cms',
       options: {
-        modulePath: `${__dirname}/src/cms/index.ts`,
-        enableIdentityWidget: false,
+        modulePath: `${__dirname}/src/cms/index.ts`
       },
     },
     'gatsby-plugin-netlify', // make sure to keep it last in the array
