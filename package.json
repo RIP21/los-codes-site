@@ -22,6 +22,7 @@
     "tsc": "tsc"
   },
   "dependencies": {
+    "date-fns": "^1.30.1",
     "graphql": "^14.4.2",
     "lodash": "^4.17.15",
     "react": "^16.8.4",

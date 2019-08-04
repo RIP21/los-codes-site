@@ -18,7 +18,7 @@ const Index: React.FC<{ data: IndexQuery }> = ({ data }) => {
           const { title, date, path } = edge.node.frontmatter
           return (
             <section key={id}>
-              <Link to={path}>
+              <Link to={`/posts/${path}`}>
                 <h2>{title}</h2>
               </Link>
               <small>{date}</small>

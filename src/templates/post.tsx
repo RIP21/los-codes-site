@@ -2,34 +2,40 @@ import React from 'react'
 import { graphql, Link } from 'gatsby'
 import { PostTemplate_PostQuery } from './post.generated'
 import { oc } from 'ts-optchain'
+import Content, { HTMLContent } from '../components/Content'
 import Layout from '../components/Layout'
+import format from 'date-fns/format'
 
 import { kebabCase } from 'lodash'
 import Helmet from 'react-helmet'
 
 type PostTemplateProps = {
-  html: string
-  tags: string[]
+  content: string
+  tags?: string[]
   title: string
   date: Date
   helmet?: React.ReactNode
+  bodyTransform?: (markdown: string) => string
+  contentComponent?: React.ComponentType<{ children: string }>
 }
 
 export const PostTemplate: React.FC<PostTemplateProps> = ({
-  html,
+  content,
   tags,
   title,
   helmet,
   date,
+  contentComponent,
 }) => {
+  const PostContent = contentComponent || Content
   return (
     <article>
       {helmet || ''}
       <header>
         <h1>{title}</h1>
-        <small>{date}</small>
+        <small>{format(date, 'MMMM DD, YYYY')}</small>
       </header>
-      <main dangerouslySetInnerHTML={{ __html: html }} />
+      <PostContent>{content}</PostContent>
       {tags && tags.length ? (
         <footer>
           <h4>Tags</h4>
@@ -46,7 +52,7 @@ export const PostTemplate: React.FC<PostTemplateProps> = ({
   )
 }
 
-const BlogPost: React.FC<{ data: PostTemplate_PostQuery }> = ({ data }) => {
+const Post: React.FC<{ data: PostTemplate_PostQuery }> = ({ data }) => {
   const post = oc(data).markdownRemark()
 
   return (
@@ -54,7 +60,8 @@ const BlogPost: React.FC<{ data: PostTemplate_PostQuery }> = ({ data }) => {
       {post && (
         <PostTemplate
           date={post.frontmatter.date}
-          html={post.html}
+          content={post.html}
+          contentComponent={HTMLContent}
           helmet={
             <Helmet titleTemplate="%s | Blog">
               <title>{`${post.frontmatter.title}`}</title>
@@ -69,14 +76,14 @@ const BlogPost: React.FC<{ data: PostTemplate_PostQuery }> = ({ data }) => {
   )
 }
 
-export default BlogPost
+export default Post
 
 export const query = graphql`
-  query PostTemplate_Post($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
+  query PostTemplate_Post($slug: String!) {
+    markdownRemark(frontmatter: { path: { eq: $slug } }) {
       html
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
+        date
         title
         tags
       }

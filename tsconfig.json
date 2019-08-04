@@ -29,7 +29,8 @@
     "node_modules",
     "build",
     "jest",
-    "coverage"
+    "coverage",
+    "public"
   ],
   "include": ["./gatsby-config.js","src", "./**.ts", "./**.js", "./typings/**/*.d.ts"]
 }
