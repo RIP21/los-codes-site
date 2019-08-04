@@ -1,21 +1,24 @@
 ---
+path: how-we-learned-to-stop-worrying-and-love-graphql
 title: "How we learned to stop worrying and love\_GraphQL"
 date: 2019-08-04T00:00:00.000Z
 thumbnail: /src/static/images/1.jpg
+tags:
+  - graphql
+  - typescript
 ---
-
 This is the first part of the story of our GraphQL experiment at Revolut. 
 First part will thoroughly explain, why we even started with GraphQL, how we approached proof of concept phase of the
 adoption, why we did it this way and not another and surely a recipe how you can do the same in your own project.
 
-## Reasons why <br>
+## Reasons why
 
 Personally, I was extremely into GraphQL since early 2017, I wrote a few small projects using it before I joined Revolut,
 and my experience with it was indeed amazing. Then, in December 2017 when I joined Revolut the shape of the project I
 started working on was far from perfect, so thoughts about GraphQL were far-far-far in the future. Eventually, after almost
 a year use cases started to appear one after another so I decided, probably it's time to start taking GraphQL seriously into consideration.
 
-###TypeScript Migration
+### TypeScript Migration
 The first and most important reason was our TypeScript migration. We started to struggle without strong types, at least we thought we do. (Oh boy we were right!)
 Around June 2018 we decided that TypeScript got enough traction with all these news that TypeScript gets the first-class
 support in Babel, as well as the ESLint, made it for us a no-brainer to select it over Flow.
