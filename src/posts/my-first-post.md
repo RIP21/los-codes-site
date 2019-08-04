@@ -1,7 +1,7 @@
 ---
-title: How we learned to stop worrying and love GraphQL
-date: 2019-08-04
-path: /how-we-learned-to-stop-worrying-and-love-graphql
+title: "How we learned to stop worrying and love\_GraphQL"
+date: 2019-08-04T00:00:00.000Z
+thumbnail: /src/static/images/1.jpg
 ---
 
 This is the first part of the story of our GraphQL experiment at Revolut. 
