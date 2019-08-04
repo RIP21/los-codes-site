@@ -14,15 +14,15 @@ const Index: React.FC<{ data: IndexQuery }> = ({ data }) => {
           Welcome to my blog, where I write stuff about tech, and, sometimes, my life.
         </p>
         {edges.map(edge => {
-          const { id, excerpt } = oc(edge).node
-          const { title, date, path } = oc(edge).node.frontmatter
+          const { id, excerpt } = edge.node
+          const { title, date, path } = edge.node.frontmatter
           return (
-            <section key={id("")}>
-              <Link to={path('')}>
-                <h2>{title('')}</h2>
+            <section key={id}>
+              <Link to={path}>
+                <h2>{title}</h2>
               </Link>
-              <small>{date('')}</small>
-              <p>{excerpt("")}</p>
+              <small>{date}</small>
+              <p>{excerpt}</p>
             </section>
           )
         })}

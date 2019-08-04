@@ -1,6 +1,6 @@
 ---
 path: how-we-learned-to-stop-worrying-and-love-graphql
-title: "How we learned to stop worrying and love\_GraphQL"
+title: "How we learned to stop worrying and love GraphQL"
 date: 2019-08-04T00:00:00.000Z
 thumbnail: /src/static/images/1.jpg
 tags:

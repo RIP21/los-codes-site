@@ -1,24 +1,75 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import { PostTemplate_PostQuery } from './post.generated'
 import { oc } from 'ts-optchain'
 import Layout from '../components/Layout'
 
-const Template: React.FC<{ data: PostTemplate_PostQuery }> = ({ data }) => {
-  const { title, date } = oc(data).markdownRemark.frontmatter
-  const html = oc(data).markdownRemark.html('')
+import { kebabCase } from 'lodash'
+import Helmet from 'react-helmet'
+
+type PostTemplateProps = {
+  html: string
+  tags: string[]
+  title: string
+  date: Date
+  helmet?: React.ReactNode
+}
+
+export const PostTemplate: React.FC<PostTemplateProps> = ({
+  html,
+  tags,
+  title,
+  helmet,
+  date,
+}) => {
+  return (
+    <article>
+      {helmet || ''}
+      <header>
+        <h1>{title}</h1>
+        <small>{date}</small>
+      </header>
+      <main dangerouslySetInnerHTML={{ __html: html }} />
+      {tags && tags.length ? (
+        <footer>
+          <h4>Tags</h4>
+          <ul>
+            {tags.map(tag => (
+              <li key={tag + `tag`}>
+                <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
+              </li>
+            ))}
+          </ul>
+        </footer>
+      ) : null}
+    </article>
+  )
+}
+
+const BlogPost: React.FC<{ data: PostTemplate_PostQuery }> = ({ data }) => {
+  const post = oc(data).markdownRemark()
+
   return (
     <Layout>
-      <div className="blog-post">
-        <h1>{title("")}</h1>
-        <h2>{date("")}</h2>
-        <div className="blog-post-content" dangerouslySetInnerHTML={{ __html: html }}/>
-      </div>
+      {post && (
+        <PostTemplate
+          date={post.frontmatter.date}
+          html={post.html}
+          helmet={
+            <Helmet titleTemplate="%s | Blog">
+              <title>{`${post.frontmatter.title}`}</title>
+              <meta name="description" content={`${post.excerpt}`} />
+            </Helmet>
+          }
+          tags={oc(post).frontmatter.tags([])}
+          title={post.frontmatter.title}
+        />
+      )}
     </Layout>
   )
 }
 
-export default Template
+export default BlogPost
 
 export const query = graphql`
   query PostTemplate_Post($path: String!) {
@@ -26,9 +77,10 @@ export const query = graphql`
       html
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
-        path
         title
+        tags
       }
+      excerpt
     }
   }
 `

@@ -1,5 +1,7 @@
 overwrite: true
 schema: "${SCHEMA:schema.graphql}"
+pluckConfig:
+  globalIdentifier: "graphql"
 documents:
   - "./{src,gatsby-scripts}/**/*.graphql"
   - "./{src,gatsby-scripts}/**/*!(.generated).{ts,tsx}"

@@ -31,7 +31,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql 
     .data.allMarkdownRemark.edges([])
     .forEach(({ node }) => {
       createPage({
-        path: oc(node).frontmatter.path('404'),
+        path: node.frontmatter.path,
         component: blogPostTemplate,
         context: {}, // additional data can be passed via context
       })

@@ -31,5 +31,5 @@
     "jest",
     "coverage"
   ],
-  "include": ["./gatsby-config.js","src", "./**.ts", "./**.js", "./typings"]
+  "include": ["./gatsby-config.js","src", "./**.ts", "./**.js", "./typings/**/*.d.ts"]
 }

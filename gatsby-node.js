@@ -12,3 +12,5 @@ require("ts-node").register({
 
 
 exports.createPages = require('./gatsby-scripts/createPages').createPages
+exports.createSchemaCustomization = require('./gatsby-scripts/createSchemaCustomization').createSchemaCustomization
+exports.createResolvers = require('./gatsby-scripts/createResolvers').createResolvers
