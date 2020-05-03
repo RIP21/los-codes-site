@@ -21,14 +21,6 @@ const config = {
         name: 'static',
       },
     },
-
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/src/images/uploads`,
-        name: 'uploads',
-      },
-    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -52,7 +44,7 @@ const config = {
     {
       resolve: 'gatsby-plugin-netlify-cms',
       options: {
-        modulePath: `${__dirname}/src/cms/index.ts`
+        modulePath: `${__dirname}/src/cms/index.ts`,
       },
     },
     'gatsby-plugin-netlify', // make sure to keep it last in the array

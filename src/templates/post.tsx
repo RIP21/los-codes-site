@@ -1,9 +1,8 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 import { PostTemplate_PostQuery } from './post.generated'
-import { oc } from 'ts-optchain'
 import Content, { HTMLContent } from '../components/Content'
-import Layout from '../components/Layout'
+import { Layout } from '../components/Layout'
 import format from 'date-fns/format'
 
 import { kebabCase } from 'lodash'
@@ -33,14 +32,14 @@ export const PostTemplate: React.FC<PostTemplateProps> = ({
       {helmet || ''}
       <header>
         <h1>{title}</h1>
-        <small>{format(date, 'MMMM DD, YYYY')}</small>
+        <small>{format(new Date(date), 'MMMM dd, yyyy')}</small>
       </header>
       <PostContent>{content}</PostContent>
       {tags && tags.length ? (
         <footer>
           <h4>Tags</h4>
           <ul>
-            {tags.map(tag => (
+            {tags.map((tag) => (
               <li key={tag + `tag`}>
                 <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
               </li>
@@ -53,7 +52,7 @@ export const PostTemplate: React.FC<PostTemplateProps> = ({
 }
 
 const Post: React.FC<{ data: PostTemplate_PostQuery }> = ({ data }) => {
-  const post = oc(data).markdownRemark()
+  const post = data.markdownRemark
 
   return (
     <Layout>
@@ -68,7 +67,7 @@ const Post: React.FC<{ data: PostTemplate_PostQuery }> = ({ data }) => {
               <meta name="description" content={`${post.excerpt}`} />
             </Helmet>
           }
-          tags={oc(post).frontmatter.tags([])}
+          tags={post.frontmatter.tags ?? []}
           title={post.frontmatter.title}
         />
       )}

@@ -1,24 +1,21 @@
-import { GatsbyNode } from 'gatsby'
+import { Actions } from 'gatsby'
 
-export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
-  actions,
-}) => {
+export const createSchemaCustomization = ({ actions }: { actions: Actions }) => {
   const { createTypes } = actions
-  // language=GraphQL
   const typeDefs = `
-    
+
     type MarkdownRemark implements Node {
       frontmatter: MarkdownRemarkFrontmatter!
     }
-    
+
     type MarkdownRemarkFrontmatter {
       date: Date! @dateformat
       path: String!
-      tags: [String!]
+      tags: [String!]!
       thumbnail: String!
       title: String!
     }
-    
+
     type SiteSiteMetadata {
       title: String!
     }

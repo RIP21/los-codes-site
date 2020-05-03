@@ -2,22 +2,21 @@ import React from 'react'
 import { kebabCase } from 'lodash'
 import Helmet from 'react-helmet'
 import { Link, graphql } from 'gatsby'
-import Layout from 'src/components/Layout'
-import {TagsQueryQuery} from "./tags.generated";
-import { oc } from 'ts-optchain';
+import { Layout } from 'src/components/Layout'
+import { TagsQueryQuery } from './tags.generated'
 
 const TagsPage: React.FC<{ data: TagsQueryQuery }> = ({ data }) => {
-  const { title } = data.site.siteMetadata
-  const group = oc(data).allMarkdownRemark.group([])
+  const { title } = data?.site?.siteMetadata
+  const group = data?.allMarkdownRemark?.group ?? []
   return (
     <Layout>
       <section>
-        <Helmet title={`Tags | ${title}`}/>
+        <Helmet title={`Tags | ${title}`} />
         <h1>Tags</h1>
         <ul>
-          {group.map(tag => (
-            <li key={oc(tag).fieldValue('')}>
-              <Link to={`/tags/${kebabCase(oc(tag).fieldValue(''))}/`}>
+          {group.map((tag) => (
+            <li key={tag?.fieldValue ?? ''}>
+              <Link to={`/tags/${kebabCase(tag?.fieldValue ?? '')}/`}>
                 {tag.fieldValue} ({tag.totalCount})
               </Link>
             </li>
@@ -25,7 +24,7 @@ const TagsPage: React.FC<{ data: TagsQueryQuery }> = ({ data }) => {
         </ul>
       </section>
     </Layout>
-  );
+  )
 }
 
 export default TagsPage

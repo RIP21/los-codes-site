@@ -1,12 +1,12 @@
 import React from 'react'
 import { Layout } from 'src/components/Layout'
 
-const About: React.FC = () => (
+const Uses: React.FC = () => (
   <Layout>
     <main>
-      <h1>About the Author</h1>
+      <h1>Uses</h1>
       <p>Welcome to my Gatsby site.</p>
     </main>
   </Layout>
 )
-export default About
+export default Uses

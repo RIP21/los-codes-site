@@ -22,15 +22,8 @@
     "resolveJsonModule": true,
     "strict": true,
     "allowSyntheticDefaultImports": true,
-    "emitDecoratorMetadata": true,
-    "incremental": true
+    "emitDecoratorMetadata": true
   },
-  "exclude": [
-    "node_modules",
-    "build",
-    "jest",
-    "coverage",
-    "public"
-  ],
-  "include": ["./gatsby-config.js","src", "./**.ts", "./**.js", "./typings/**/*.d.ts"]
+  "exclude": ["node_modules", "build", "jest", "coverage", "public"],
+  "include": ["./gatsby-config.js", "src", "./**.ts", "./**.js", "./@types/**/*.d.ts"]
 }

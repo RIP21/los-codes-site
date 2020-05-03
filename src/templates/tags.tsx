@@ -2,18 +2,17 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { graphql, Link } from 'gatsby'
 import { TagPageQuery, TagPageQueryVariables } from './tags.generated'
-import Layout from '../components/Layout'
-import { oc } from 'ts-optchain';
+import { Layout } from 'src/components/Layout'
 
 const TagRoute: React.FC<{ data: TagPageQuery; pageContext: TagPageQueryVariables }> = ({
   data,
   pageContext,
 }) => {
-  const allMd = oc(data).allMarkdownRemark
-  const posts = allMd.edges([])
+  const allMd = data?.allMarkdownRemark
+  const posts = allMd.edges ?? []
   const tag = pageContext.tag
   const title = data.site.siteMetadata.title
-  const totalCount = allMd.totalCount(0)
+  const totalCount = allMd.totalCount ?? 0
   const tagHeader = `${totalCount} post${
     totalCount === 1 ? '' : 's'
   } tagged with “${tag}”`
@@ -24,7 +23,7 @@ const TagRoute: React.FC<{ data: TagPageQuery; pageContext: TagPageQueryVariable
         <Helmet title={`${tag} | ${title}`} />
         <h3>{tagHeader}</h3>
         <ul>
-          {posts.map(post => (
+          {posts.map((post) => (
             <li key={post.node.frontmatter.path}>
               <Link to={`/posts/${post.node.frontmatter.path}`}>
                 <h2>{post.node.frontmatter.title}</h2>

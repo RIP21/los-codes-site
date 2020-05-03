@@ -1,5 +1,5 @@
 overwrite: true
-schema: "./schema.graphql"
+schema: "http://localhost:8000/___graphql"
 pluckConfig:
   globalIdentifier: "graphql"
 documents:
@@ -19,3 +19,6 @@ generates:
       baseTypesPath: ./types.generated.ts
     plugins:
       - typescript-operations
+  ./schema.graphql:
+    plugins:
+      - "schema-ast"

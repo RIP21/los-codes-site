@@ -1,10 +1,12 @@
 ---
-path: new-post
-title: Hello
-date: 2019-08-04T12:10:10.595Z
-thumbnail: /images/uploads/img_20200404_100917.jpg
+path: talk-test
+title: 'Talk test'
+date: 2019-08-04T12:00:00.000Z
+thumbnail: /images/uploads/1.jpg
 tags:
   - graphql
+  - typescript
+  - talk
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor mauris pharetra in egestas eget ornare sed at vulputate. Vel tincidunt ut nulla pretium orci ac. Turpis ornare dolor at feugiat sed mus lectus scelerisque. Nulla semper feugiat sit massanunc eget tempor eros pellentesque.
