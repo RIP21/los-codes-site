@@ -7,7 +7,7 @@ import merge from 'lodash/merge'
 
 const StyledLink = styled(Box)<LinkProps>(typography)
 
-export type LinkProps = BoxProps & TypographyProps & GatsbyLinkProps<any>
+export type LinkProps = BoxProps<'a'> & TypographyProps & GatsbyLinkProps<any>
 
 export const Link: React.FC<LinkProps> = ({ sx, ...props }) => {
   return (
@@ -16,10 +16,9 @@ export const Link: React.FC<LinkProps> = ({ sx, ...props }) => {
       as={GatsbyLink}
       sx={merge(
         {
-          fontSize: 2,
+          fontSize: 1,
           color: 'inherit',
           fontFamily: 'body',
-          textDecoration: 'none',
           transition: 'color 150ms',
           ':hover': {
             color: 'hover',

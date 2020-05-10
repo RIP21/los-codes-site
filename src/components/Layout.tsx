@@ -19,6 +19,7 @@ const NavLink: React.FC<LinkProps> = (props) => {
   const linkCustomStyles = {
     fontWeight: 'bold',
     fontSize: 2,
+    textDecoration: 'none',
   }
   return match && props.to !== '/' ? (
     <Box
@@ -27,7 +28,7 @@ const NavLink: React.FC<LinkProps> = (props) => {
         position: 'relative',
       }}
     >
-      <Link {...linkCustomStyles} {...props} />
+      <Link sx={linkCustomStyles} {...props} />
       <Box
         sx={{
           bg: 'primary',
@@ -40,7 +41,7 @@ const NavLink: React.FC<LinkProps> = (props) => {
     </Box>
   ) : (
     <Box py={2}>
-      <Link {...linkCustomStyles} {...props} />
+      <Link sx={linkCustomStyles} {...props} />
     </Box>
   )
 }
@@ -58,6 +59,7 @@ const NavigationBar = () => (
       <Flex
         as="nav"
         width={1}
+        flexDirection={['column', 'row']}
         maxWidth="container"
         alignItems="center"
         justifyContent="space-between"
@@ -81,17 +83,18 @@ export const Layout: React.FC = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
       <Flex
+        as="header"
         minHeight="100vh"
         width="100%"
         flexDirection="column"
         justifyContent="space-between"
       >
         <GlobalStyle />
-        <Box>
+        <Box as="main">
           <NavigationBar />
           {children}
         </Box>
-        <Flex justifyContent="center" alignItems="center" bg="primary" mt={2}>
+        <Flex as="footer" justifyContent="center" alignItems="center" bg="primary" mt={2}>
           <Paragraph color="background" py={2}>
             Made by Andrii Los aka @RIP21 or @RIP212. All opinions are mine. Quoting of
             contents with mention is greatly appreciated

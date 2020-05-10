@@ -15,7 +15,7 @@
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": false,
     "noUnusedParameters": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "suppressImplicitAnyIndexErrors": true,
     "skipLibCheck": true,
     "noEmit": true,
@@ -25,5 +25,12 @@
     "emitDecoratorMetadata": true
   },
   "exclude": ["node_modules", "build", "jest", "coverage", "public"],
-  "include": ["./gatsby-config.js", "src", "./**.ts", "./**.js", "./@types/**/*.d.ts"]
+  "include": [
+    "./gatsby-config.js",
+    "src",
+    "./**.ts",
+    "./**.tsx",
+    "./**.js",
+    "./@types/**/*.d.ts"
+  ]
 }

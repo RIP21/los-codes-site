@@ -1,12 +1,13 @@
 import React from 'react'
 import { Layout } from 'src/components/Layout'
+import { Container } from 'src/components/Container'
 
 const Uses: React.FC = () => (
   <Layout>
-    <main>
+    <Container>
       <h1>Uses</h1>
       <p>Welcome to my Gatsby site.</p>
-    </main>
+    </Container>
   </Layout>
 )
 export default Uses

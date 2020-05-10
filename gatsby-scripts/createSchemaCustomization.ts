@@ -4,11 +4,11 @@ export const createSchemaCustomization = ({ actions }: { actions: Actions }) => 
   const { createTypes } = actions
   const typeDefs = `
 
-    type MarkdownRemark implements Node {
-      frontmatter: MarkdownRemarkFrontmatter!
+    type Mdx implements Node {
+      frontmatter: MdxFrontmatter!
     }
 
-    type MarkdownRemarkFrontmatter {
+    type MdxFrontmatter {
       date: Date! @dateformat
       path: String!
       tags: [String!]!

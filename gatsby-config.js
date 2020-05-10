@@ -42,9 +42,17 @@ const config = {
     `gatsby-plugin-styled-components`,
     'gatsby-transformer-remark',
     {
-      resolve: 'gatsby-plugin-netlify-cms',
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        modulePath: `${__dirname}/src/cms/index.ts`,
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1035,
+              sizeByPixelDensity: true,
+            },
+          },
+        ],
       },
     },
     'gatsby-plugin-netlify', // make sure to keep it last in the array

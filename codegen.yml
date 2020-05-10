@@ -3,7 +3,6 @@ schema: "./schema.graphql"
 pluckConfig:
   globalIdentifier: "graphql"
 documents:
-  - "./{src,gatsby-scripts}/**/*.graphql"
   - "./{src,gatsby-scripts}/**/*!(.generated).{ts,tsx}"
 generates:
   src/types.generated.ts:

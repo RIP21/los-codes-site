@@ -1,12 +1,13 @@
 import React from 'react'
 import { Layout } from 'src/components/Layout'
+import { Container } from '../components/Container'
 
 const Contacts: React.FC = () => (
   <Layout>
-    <main>
+    <Container>
       <h1>Contacts</h1>
       <p>Welcome to my Gatsby site.</p>
-    </main>
+    </Container>
   </Layout>
 )
 export default Contacts

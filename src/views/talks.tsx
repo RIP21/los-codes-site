@@ -3,12 +3,13 @@ import { TalksQuery } from './talks.generated'
 import { graphql } from 'gatsby'
 import { Layout } from 'src/components/Layout'
 import { Link } from 'src/components/Link'
+import { Container } from '../components/Container'
 
 const Talks: React.FC<{ data: TalksQuery }> = ({ data }) => {
-  const edges = data.allMarkdownRemark.edges
+  const edges = data.allMdx.edges
   return (
     <Layout>
-      <main>
+      <Container>
         {edges.map((edge) => {
           const { id, excerpt } = edge.node
           const { title, date, path } = edge?.node?.frontmatter
@@ -22,7 +23,7 @@ const Talks: React.FC<{ data: TalksQuery }> = ({ data }) => {
             </section>
           )
         })}
-      </main>
+      </Container>
     </Layout>
   )
 }
@@ -30,7 +31,7 @@ export default Talks
 
 export const query = graphql`
   query Talks {
-    allMarkdownRemark(
+    allMdx(
       filter: { frontmatter: { tags: { eq: "talk" } } }
       sort: { order: DESC, fields: [frontmatter___date] }
       limit: 1000

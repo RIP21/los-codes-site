@@ -1,18 +1,15 @@
 import { GatsbyNode } from 'gatsby'
 import { resolve } from 'path'
-import { CreatePages_MarkdownRemarkPostsQuery } from './createPages.generated'
+import { CreatePages_MdxConnectionsQuery } from './createPages.generated'
 import uniq from 'lodash/uniq'
 import kebabCase from 'lodash/kebabCase'
 
 export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql }) => {
   const { createPage } = actions
   const blogPostTemplate = resolve(`src/templates/post.tsx`)
-  const result = await graphql<CreatePages_MarkdownRemarkPostsQuery>(`
-    query createPages_MarkdownRemarkPosts {
-      allMarkdownRemark(
-        sort: { order: DESC, fields: [frontmatter___date] }
-        limit: 1000
-      ) {
+  const result = await graphql<CreatePages_MdxConnectionsQuery>(`
+    query createPages_MdxConnections {
+      allMdx(sort: { order: DESC, fields: [frontmatter___date] }, limit: 1000) {
         edges {
           node {
             frontmatter {
@@ -29,7 +26,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql 
     throw new Error('Things broke, see console output above')
   }
 
-  const posts = result.data?.allMarkdownRemark?.edges ?? []
+  const posts = result.data?.allMdx?.edges ?? []
 
   posts.forEach(({ node }) => {
     createPage({

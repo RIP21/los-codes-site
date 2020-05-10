@@ -1,14 +1,16 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { graphql, Link } from 'gatsby'
-import { TagPageQuery, TagPageQueryVariables } from './tags.generated'
+import { TagsQuery, TagsQueryVariables } from './tags.generated'
 import { Layout } from 'src/components/Layout'
+import { Box } from 'reflexbox/styled-components'
+import { Container } from '../components/Container'
 
-const TagRoute: React.FC<{ data: TagPageQuery; pageContext: TagPageQueryVariables }> = ({
+const Tags: React.FC<{ data: TagsQuery; pageContext: TagsQueryVariables }> = ({
   data,
   pageContext,
 }) => {
-  const allMd = data?.allMarkdownRemark
+  const allMd = data?.allMdx
   const posts = allMd.edges ?? []
   const tag = pageContext.tag
   const title = data.site.siteMetadata.title
@@ -19,7 +21,7 @@ const TagRoute: React.FC<{ data: TagPageQuery; pageContext: TagPageQueryVariable
 
   return (
     <Layout>
-      <section>
+      <Container>
         <Helmet title={`${tag} | ${title}`} />
         <h3>{tagHeader}</h3>
         <ul>
@@ -34,21 +36,21 @@ const TagRoute: React.FC<{ data: TagPageQuery; pageContext: TagPageQueryVariable
         <p>
           <Link to="/tags/">Browse all tags</Link>
         </p>
-      </section>
+      </Container>
     </Layout>
   )
 }
 
-export default TagRoute
+export default Tags
 
-export const tagPageQuery = graphql`
-  query TagPage($tag: String) {
+export const query = graphql`
+  query Tags($tag: String) {
     site {
       siteMetadata {
         title
       }
     }
-    allMarkdownRemark(
+    allMdx(
       limit: 1000
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { tags: { in: [$tag] } } }

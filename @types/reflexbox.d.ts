@@ -23,7 +23,7 @@ declare module 'reflexbox/styled-components' {
     sx?: SxStyleProp
   }
 
-  type BoxProps = SpaceProps &
+  type BoxTypeProps = SpaceProps &
     LayoutProps &
     TypographyProps &
     ColorProps &
@@ -32,10 +32,13 @@ declare module 'reflexbox/styled-components' {
       as?: React.ElementType
     }
 
+  export type BoxProps<T extends keyof JSX.IntrinsicElements = 'div'> = BoxTypeProps &
+    JSX.IntrinsicElements[T]
+
   export type BoxType = StyledComponent<
     JSX.IntrinsicElements['div'],
     DefaultTheme,
-    BoxProps
+    BoxTypeProps
   >
 
   export const Box: BoxType

@@ -4,13 +4,14 @@ import Helmet from 'react-helmet'
 import { Link, graphql } from 'gatsby'
 import { Layout } from 'src/components/Layout'
 import { TagsQueryQuery } from './tags.generated'
+import { Container } from '../components/Container'
 
 const TagsPage: React.FC<{ data: TagsQueryQuery }> = ({ data }) => {
   const { title } = data?.site?.siteMetadata
-  const group = data?.allMarkdownRemark?.group ?? []
+  const group = data?.allMdx?.group ?? []
   return (
     <Layout>
-      <section>
+      <Container>
         <Helmet title={`Tags | ${title}`} />
         <h1>Tags</h1>
         <ul>
@@ -22,7 +23,7 @@ const TagsPage: React.FC<{ data: TagsQueryQuery }> = ({ data }) => {
             </li>
           ))}
         </ul>
-      </section>
+      </Container>
     </Layout>
   )
 }
@@ -36,7 +37,7 @@ export const tagPageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(limit: 1000) {
+    allMdx(limit: 1000) {
       group(field: frontmatter___tags) {
         fieldValue
         totalCount
